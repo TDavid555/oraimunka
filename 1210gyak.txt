@@ -1,0 +1,411 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1127
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //36, 37, 38, 39
+            //összes tömbös viszont az összeset eljárással
+
+
+            //36.
+            /*
+            string str = "";
+            string str2 = "";
+
+            for (int i = 0; i < 6; i++) {
+            
+                if (i %2 == 0) {
+
+                    str += "x";
+
+                }
+
+                else { str += "o"; }
+
+                if (i %2 != 0) {
+
+                    str2 += "x";
+
+                }
+
+                else
+                {
+                    str2 += "o";
+                }
+            
+            }
+
+           for (int i = 0;i < 6;i++) { 
+            
+                if (i%2 == 0)
+                {
+                    Console.WriteLine(str);
+                }
+                else { Console.WriteLine(str2); }
+            
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //37.
+
+            Console.WriteLine("Kérem a számot: ");
+            int hszog = int.Parse(Console.ReadLine());
+
+            string csillag = "*";
+
+            Console.WriteLine(csillag);
+            for (int i = 0; i < hszog-1 ; i++) {
+
+                csillag+="**";
+
+                Console.WriteLine(csillag);
+
+
+
+            }
+
+
+            //38.
+
+            
+         Console.WriteLine("Kérem a számot: ");
+         int hszog2 = int.Parse(Console.ReadLine());
+
+         string space = " ";
+         string csillag2 = space+"*";
+
+         Console.WriteLine(csillag2);
+         for (int i = 0; i < hszog2 - 1; i++)
+         {
+             space.Remove(1);
+             csillag2 += "**";
+
+             Console.WriteLine(space+csillag2);
+
+
+
+         }
+
+
+         
+
+
+            //39.
+
+            Console.WriteLine("Kérem az első számot: ");
+            int tegla1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Kérem a második számot: ");
+            int tegla2 = int.Parse(Console.ReadLine());
+
+
+            string csll = "";
+            int space = -2;
+            string spaceStr = "";
+
+
+
+            for (int i = 0; i < tegla1; i++)
+            {
+
+                csll += "*";
+                space += 1;
+
+            }
+
+            for (int i = 0; i < space; i++)
+            {
+                spaceStr += " ";
+            }
+
+
+            for (int i = 0; i < tegla2 ; i++) {
+
+                Console.WriteLine();
+
+                if (i == 1) {
+
+                    Console.WriteLine(csll);
+
+                }
+
+                if (i >=2 && i < tegla2) {
+
+
+                    Console.WriteLine("*" + spaceStr + "*");
+
+
+                }
+
+                if (i == tegla2-1)
+                {
+                    Console.WriteLine(csll);
+                }
+
+
+
+
+            }
+
+            
+
+
+            //42.
+
+            
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            int[] tomb = new int[db];
+
+            for (int i = 0; i < db; i++)
+            {
+                
+                Console.WriteLine("kérem a számot");
+                tomb[i] = int.Parse(Console.ReadLine());
+
+            }
+
+            int paratlan = 0;
+            
+            foreach (int i in tomb)
+            {
+                if (i %2 != 0)
+                {
+                    paratlan++;
+                }
+            }
+
+            Console.WriteLine(paratlan);
+            
+
+
+            //43.
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            int[] tomb = new int[db];
+
+            for (int i = 0; i < db; i++)
+            {
+
+                Console.WriteLine("kérem a számot");
+                tomb[i] = int.Parse(Console.ReadLine());
+
+            }
+
+            int paros = 0;
+
+            foreach (int i in tomb)
+            {
+                if (i % 2 == 0)
+                {
+                    paros++;
+                }
+            }
+
+
+            Console.WriteLine(paros);
+
+
+            
+
+            //44.
+
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            int[] tomb = new int[db];
+            int[] hanyadik = new int[db];
+
+            for (int i = 0; i < db; i++)
+            {
+
+                Console.WriteLine("kérem a számot");
+                tomb[i] = int.Parse(Console.ReadLine());
+                hanyadik[i] = i;
+            }
+
+
+            for (int i = 0;i < tomb.Length; i++) {
+
+                if (tomb[i] %2 == 0)
+                {
+                    Console.WriteLine("Paros: {0} és a sorszáma: {1}",tomb[i] ,i+1);
+                    
+                }
+
+            }
+
+            
+
+
+            //45.
+
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            int[] tomb = new int[db];
+            int[] hanyadik = new int[db];
+
+            for (int i = 0; i < db; i++)
+            {
+
+                Console.WriteLine("kérem a számot");
+                tomb[i] = int.Parse(Console.ReadLine());
+                hanyadik[i] = i;
+            }
+
+            Console.WriteLine("Keresendő?");
+            int keresd = int.Parse(Console.ReadLine());
+
+            int hol = 0;
+
+            for (int i = 0;i < tomb.Length; i++) {
+            
+                if (tomb[i] == keresd)
+                {
+                    
+                    hol+=i+1; break;
+                }
+
+                
+
+            }
+
+
+            Console.WriteLine(hol);
+
+
+
+            
+
+
+
+            //46.
+
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            int[] tomb = new int[db];
+
+            for (int i = 0; i < db; i++)
+            {
+
+                Console.WriteLine("kérem a számot");
+                tomb[i] = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Keresendő?");
+            int keresd = int.Parse(Console.ReadLine());
+
+            int mennyi = 0;
+
+            for (int i = 0; i < tomb.Length; i++)
+            {
+
+                if (tomb[i] == keresd)
+                {
+
+                    mennyi++;
+                }
+
+
+
+            }
+
+
+            Console.WriteLine(mennyi);
+
+
+
+
+            //47.
+
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            string[] keresztnev = new string[db];
+
+            for (int i = 0; i < db; i++)
+            {
+
+                Console.WriteLine("kérem a számot");
+                keresztnev[i] = Console.ReadLine();
+            }
+
+            Console.WriteLine("Keresendő?");
+            string keresd = Console.ReadLine();
+
+            int mennyi = 0;
+
+            for (int i = 0; i < keresztnev.Length; i++)
+            {
+
+                if (keresztnev[i] == keresd)
+                {
+
+                    mennyi++;
+                }
+
+
+
+            }
+
+
+            Console.WriteLine(mennyi);
+
+
+            */
+
+
+            //48.
+
+            Console.WriteLine("Hányat");
+            int db = int.Parse(Console.ReadLine());
+
+            int[] tomb = new int[db];
+
+            for (int i = 0; i < db; i++)
+            {
+
+                Console.WriteLine("kérem a számot");
+                tomb[i] = int.Parse(Console.ReadLine());
+            }
+
+
+            int mini = tomb.Min();
+            int maxi = tomb.Max();
+
+            Console.WriteLine("kulonbseg: {0}",maxi-mini);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Console.ReadKey();
+
+        }
+    }
+}
