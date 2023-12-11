@@ -1,0 +1,155 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1211
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            /*
+            //1.
+
+            List<int> szamok = new List<int>() { 12, 86, 31, 5, 85 };
+
+            foreach (var item in szamok) {
+            
+                Console.WriteLine(item);
+            
+            }
+
+
+            int elemek_szama = szamok.Count;
+            Console.WriteLine("Elemek száma: {0}",elemek_szama);
+
+
+
+            szamok.Add(1000);
+
+            for (int i = 0; i < szamok.Count; i++)
+            {
+                Console.WriteLine(szamok[i]);
+            }
+            
+            
+
+            List<string> nevek = new List<string>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                string nev = Console.ReadLine();
+                nevek.Add(nev);
+            }
+
+            int db = 0;
+            
+            foreach (var item in nevek)
+            {
+                if (item[0] == 'A')
+                {
+                    db += 1;
+                }
+            }
+
+            Console.WriteLine(db);
+
+            
+
+
+            for (int i = 0;i < nevek.Count;i++)
+            {
+                if (nevek[i][0] == 'a')
+                {
+                    db += 1;
+                }
+            }
+
+            Console.WriteLine(db);
+
+            */
+
+
+            //python feladatok debreceni egyetem
+            //eljárásokkal
+            //25, 26, 27, 28
+
+            //eljaras1();
+            //eljaras2();
+            eljaras3();
+            
+
+
+            Console.ReadKey();
+
+        }
+
+        static void eljaras1()
+        {
+
+            List<int> szamok = new List<int>() { };
+            int szam = 1;
+
+
+            while (szam != 0)
+            {
+
+                Console.Write("Kérem a számokat: ");
+                int szam2 = int.Parse(Console.ReadLine());
+                szamok.Add(szam2);
+                szam = szam2;
+
+            }
+  
+
+            for (int i = szamok.Count()-1; i>=0 ; i--)
+            {
+                Console.WriteLine(szamok[i]);
+            }
+
+        }
+
+
+
+        static void eljaras2()
+        {
+
+            List<int> lista = new List<int>() { 12, 86, 5, 31, 5, 85, 5, 31 };
+
+            IEnumerable<int> lista2 = lista.Distinct().ToList();
+
+            foreach (int kiir in lista2)
+            {
+                Console.WriteLine(kiir);
+            }
+
+
+
+
+        }
+
+
+
+        static void eljaras3()
+        {
+
+            List<int> lista = new List<int>() { 12, 86, 5, 31, 5, 85, 5, 31 };
+            List<int> lista2 = new List<int>();
+
+           
+
+
+
+
+        }
+
+
+
+
+
+
+    }
+}
