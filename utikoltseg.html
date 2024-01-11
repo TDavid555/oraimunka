@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utistilus.css">
+    <title>Document</title>
+</head>
+<body>
+<form>
+    <h1>Útiköltség-elszámolás</h1>
+
+    <h3>Személyes adatok</h3>
+<div id="margo">
+    <table>
+        <tr>
+            <td>
+                Név:
+                <input id="nev" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>Lakcím:
+                <input id="lakcim" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Születési dátum:
+                <input id="szul" type="number">
+            </td>
+        </tr>
+    </table>
+</div>
+    <h3>Gépjármű- és üzemanyag adatok</h3>
+
+    <div id="margo">
+    <table>
+            <tr>
+                <td>Gépjármű gyártmánya, típusa:
+                    <input id="tipus" type="text">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Üzemanyag fajtája:
+                        <input list="uzemanyagok" name="uzemanyag" id="uzemanyagok">
+
+                        <datalist id="uzemanyagok">
+                        <option value="Benzin"></option>
+                        <option value="Dízel"></option>
+                        </datalist>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Fogyasztási norma:
+                    <input list="normak" name="norma" id="normak">
+
+                        <datalist id="normak">
+                        <option id="option1" value=""></option>
+                        <option id="option2" value=""></option>
+                        <option id="option3" value=""></option>
+                        <option id="option4" value=""></option>
+                        <option id="option5" value=""></option>
+                        </datalist>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Utazás dátuma:
+                    <input id="datum" type="text">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Üzemanyag egységára:
+                <input id="egysegar" type="number"> Ft/l
+                <p type="link" id="forras">Forrás: <a href="https://nav.gov.hu/ugyfeliranytu/uzemanyag/">https://nav.gov.hu/ugyfeliranytu/uzemanyag/</a></p>
+                </td>
+            </tr>
+    </table>
+    </div>
+
+    <h3>A megtett út adatai</h3>
+    <div id="margo">
+        <table>
+            <tr>
+                <td>Kiindulási hely:
+                <input id="kiindulas" type="text">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Úticél:
+                <input id="uticel" type="text">
+                </td>
+            </tr>
+
+            <tr>
+                <td>További úticél:
+                <input id="tovabbi" type="text">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Összes megtett távolság <br> Google Maps alapján:
+                    <input id="ossztav" type="number">
+                    Km
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        
+        <input id="ell" type="button" value="Ellenőrzés és számítás">
+    </div>
+        <br>
+
+
+<div id="margo2">
+    <br>
+    <table>
+        <tr>
+            <td>Útiköltség:</td>
+            <td><p id="utikoltseg"></p></td>
+        </tr>
+
+        <tr>
+            <td>Amortizáció:</td>
+            <td><p id="amortizacio"></p></td>
+        </tr>
+
+        <tr>
+            <td><b>Összesen elszámolható költség:</b></td>
+            <td><p id="vegosszeg"><b></b></p></td>
+        </tr>
+    </table>
+    <br>
+    <button type="button" id="nyomtatas" onclick="window.print()">Nyomtatás</button>
+
+
+</div>
+
+<p>Aláírásommal igazolom, hogy az adatok a valóságnak megfelelnek.</p><br>
+<p>...............................................</p><p id="datum"></p><br>
+<p id="alairas">...............................</p>
+<p id="alairas2">aláírás</p>
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

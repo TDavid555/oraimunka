@@ -1,0 +1,99 @@
+#ell{
+    margin-left: 305px;
+}
+
+#nev{
+    margin-left: 270px;
+}
+
+#lakcim{
+    margin-left: 248px
+}
+
+#szul{
+    margin-left: 195px;
+}
+
+#margo{
+    margin-left: 35px;
+}
+
+#tipus{
+    margin-left: 106px;
+}
+
+#uzemanyagok{
+    margin-left: 175px;
+}
+
+#normak{
+    margin-left: 175px;
+}
+
+#datum{
+    margin-left: 201px;
+}
+
+#egysegar{
+    margin-left: 151px;
+}
+
+#kiindulas{
+    margin-left: 194px;
+}
+
+#uticel{
+    margin-left: 253px;
+}
+
+#tovabbi{
+    margin-left: 201px;
+}
+
+#ossztav{
+    margin-left: 156px;
+}
+
+#margo2{
+    margin-left: 35px;
+    border-top: 2px solid gray;
+    margin-right: 71%;
+}
+
+#utikoltseg{
+    margin-left: 90px;
+}
+
+#amortizacio{
+    margin-left: 90px;
+}
+
+#vegosszeg{
+    margin-left: 89px;
+}
+
+#forras{
+    font-size: 11.5px;
+    margin-left: 230px;
+}
+
+#nyomtatas{
+    margin-left: 308px;
+}
+
+#alairas{
+    margin-left: 300px;
+}
+
+#alairas2{
+    margin-left: 340px;
+}
+
+@media print
+	{    
+	    input[type=submit],button
+	    {
+	        display :  none ;
+	    }
+	}
+
