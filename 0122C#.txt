@@ -1,0 +1,207 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _0122
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //1. eljárással: 20 db számot kérünk be randomszerűen 1-10 között.
+            //a: nézzük meg 1-10 között melyik nem szerepel egyszer sem
+            //b: melyik az a szám amelyik a legtöbbször szerepelt?
+
+            //2. Eljárás: Hozz létre egy szótárt: autó neve Key és piaci ára value <string, int>
+            //a: hány olyan van ami meghaladja a 3m ft-ot
+            //b: van e olyan autó mely piaci ára alacsonyabb mint 1m ft, melyek ezek?
+            //c: átlagosan mennyibe kerülnek ezek az autók?
+
+            //3. függvénnyel: adott a köv adattípus elemei: 5,18,31,86,12.
+            //a függvény randomszerűen generál 1-90 között 5db számot, hány találat volt?
+
+            //4. függvénnyel: listába 10 db tárgynév
+            //a függ. határozza meg hogy a 10 tárgy közül hány olyan van amely 5 karakterből áll és "a"-ra végződik
+
+            //5. eljárással: szótárban első oszlop diákok (5db), value: átlagok
+            //a: ki a legjobb tanuló?
+            //b: van e aki nem érte el a 3,5-ös szintet, kik ők?
+            //c: ki mennyi ösztöndíjat fog kapni hogyha: 2,5> =0 ; 2,6-3,5 = 20e ; 3,6-4,4 = 40e ; 4,5< = 50e
+
+            Console.WriteLine("Ennyi találat volt: {0}.",fuggveny());
+            Console.WriteLine("Ennyi tárgy neve áll 5 karakterből és végződik 'a' betűre: {0}.",fuggveny2());
+
+
+            Console.ReadKey();
+
+        }
+
+
+        static void eljaras1()
+        {
+
+            List<int> lista = new List<int>(20);
+            HashSet<int> halmaz1 = new HashSet<int>();
+            Random szam1 = new Random();
+            for (int i = 0; i < 20; i++)
+            {
+                int szamrand = szam1.Next(1, 11);
+                halmaz1.Add(szamrand);
+            }
+            
+            foreach (int i in halmaz1 )
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine();
+
+            for (int i = 1;i < 11; i++)
+            {
+                if (halmaz1.Contains(i) == false)
+                {
+                    lista.Add(i);
+                }               
+            }
+            
+            foreach(int i in lista)
+            {
+                Console.WriteLine("Ez a szám nem szerepel a halmazban: {0}",i);
+            }
+          
+        }
+
+        static void eljaras2()
+        {
+
+            Dictionary<string, int> szotar = new Dictionary<string, int>()
+            {
+                {"Opel", 600000 },
+                {"Toyota", 3500000 },
+                {"Suzuki", 800000 },
+                {"Ford", 6000000 },
+                {"BMW", 4000000}
+
+            };
+
+            int harom = 0;
+            bool van1m = false;
+            List<string> lista2 = new List<string>() { };
+
+            foreach (KeyValuePair<string, int> s in szotar) {  
+                
+                if(s.Value >= 3000000)
+                {
+                    harom++;
+                }
+
+
+                if (s.Value < 1000000)
+                {
+                    van1m = true;
+                    lista2.Add(s.Key);
+                }
+
+            }
+            
+            Console.WriteLine("Ennyi olyan autó van aminek ára meghaladja a 3 millió Ft-ot: {0} ",harom);
+            
+            if (van1m) {
+
+            Console.WriteLine("Ez(ek) az autók kevesebbet érnek mint 1m ft: ");
+            foreach (string s in lista2) { Console.Write(s+" "); }
+
+            }
+            else { Console.WriteLine("Nincs olyan autó aminek ára kevesebb mint 1 millió Ft."); }
+
+
+
+
+            int arosszeg = 0;
+            int arak = 0;
+            foreach (KeyValuePair<string, int> s in szotar)
+            {
+                arosszeg += s.Value;
+                arak++;
+            }
+
+            int atlag = arosszeg / arak;
+            Console.WriteLine();
+            Console.WriteLine("Az autók átlagára: {0} Ft.",atlag);
+
+
+        }
+
+        static int fuggveny()
+        {
+            
+            HashSet<int> halmaz2 = new HashSet<int>() { };
+            Random szam1 = new Random();
+            for (int i = 1; i <= 5; i++)
+            {
+                int szamrand = szam1.Next(1, 91);
+                halmaz2.Add(szamrand);
+            }
+
+            int talalt = 0;
+            List<int> lista2 = new List<int>() { 5, 18, 31, 86, 12 };
+
+            foreach (int i in halmaz2) {
+            
+                foreach (int j in lista2)
+                {
+                    if(j==i)
+                    {
+                      talalt++;
+                    }
+                }
+            
+            }
+
+
+
+
+            return talalt;
+        }
+
+        static int fuggveny2()
+        {
+
+            List<string> lista3 = new List<string>() {"monitor", "egér", "billentyűzet", "számítógép", "asztal", "asdfa", "vezeték", "tolltartó", "ceruza", "ajtó"};
+            int db = 0;
+            foreach (string s in lista3)
+            {
+                if (s.Length == 5 && s[s.Length-1] == 'a')
+                {
+                    db++;
+                }
+            }
+
+
+            return db;
+        }
+
+        static void eljaras3()
+        {
+
+            Dictionary<string, double> szotar = new Dictionary<string, double>()
+            {
+                {"Sándor", 4.25 },
+                {"Péter", 1.2},
+                {"Ferenc", 3.66 },
+                {"József", 4.66 },
+                {"Béci", 2.3 }
+
+            };
+
+
+
+
+        }
+
+    }
+}
