@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _0205_3
+{
+
+    struct Dolgozok{
+
+        public int id;
+        public string nev;
+        public int ber;
+
+        public Dolgozok(int dolgozoID, string dolgozoNev, int dolgozoBer)
+        {
+            id= dolgozoID;
+            nev= dolgozoNev;
+            ber= dolgozoBer;
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Dolgozok dolgozo1 = new Dolgozok(1,"Péter",20000);
+            Dolgozok dolgozo2 = new Dolgozok(2, "Béci",300000);
+            Dolgozok dolgozo3 = new Dolgozok(3, "László",4000000);
+
+            List<Dolgozok> dolgozok= new List<Dolgozok>();
+
+            dolgozok.Add(dolgozo1);
+            dolgozok.Add(dolgozo2);
+            dolgozok.Add(dolgozo3);
+
+            int maxber = 0;
+
+            foreach(var i in dolgozok)
+            {
+
+                maxber = Math.Max(maxber, i.ber);
+
+                Console.WriteLine(i.nev);
+                Console.WriteLine(i.ber);
+
+                if (i.ber == maxber)
+                {
+                    Console.WriteLine("{0} keres a legtöbbet, pontosan ennyit: {1}",i.nev, i.ber);
+                }
+
+
+            }
+
+
+
+
+            Console.ReadKey();
+
+        }
+    }
+}
