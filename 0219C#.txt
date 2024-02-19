@@ -1,0 +1,149 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _0219C_
+{
+    internal class Program
+    {
+        struct Autok
+        {
+            public string marka;
+            public int evjarat;
+            public int ar;
+            public string szin;
+
+            public Autok(string autoMarka, int autoEvjarat, int autoAr, string autoSzin)
+            {
+
+                marka = autoMarka;
+                evjarat = autoEvjarat;
+                ar = autoAr;
+                szin = autoSzin;
+
+
+            }
+
+
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            //1. Autok struktúra
+            //a: függvény: átlag mennyibe kerülnek?
+            //b: eljárás: a legolcsóbb autó összes info
+            //c: van-e olyan ami ezüst színű?
+            //d: függvény: hanyadik az az autó amelyik "Audi" és a színe ezüst.
+
+            Autok auto1 = new Autok("Suzuki", 1998, 500000, "fekete");
+            Autok auto2 = new Autok("Toyota", 2001, 800000, "ezüst");
+            Autok auto3 = new Autok("Chevrolet", 2010, 1200000, "fehér");
+            Autok auto4 = new Autok("Ford", 2005, 2000000, "piros");
+            Autok auto5 = new Autok("Audi", 2015, 2300000, "ezüst");
+
+            List<Autok> info = new List<Autok>();
+
+            info.Add(auto1);
+            info.Add(auto2);
+            info.Add(auto3);
+            info.Add(auto4);
+            info.Add(auto5);
+
+
+            Console.WriteLine("Az autók átlagára: {0}", atlaga(info));
+            legolcsobb(info);
+
+            bool vane = false;
+            foreach(var a in info)
+            {
+                if (a.szin == "ezüst")
+                {
+                    vane = true;
+                }
+            }
+
+            if (vane)
+            {
+                Console.WriteLine("Van ezüst színű autó.");
+            }
+            else {
+                Console.WriteLine("Nincs ezüst színű autó.");
+            }
+
+
+            Console.WriteLine("Ezen a helyen áll az ezüst Audi: {0}",melyik(info));
+
+
+            Console.ReadKey();
+
+        }
+
+        static int atlaga(List<Autok> info)
+        {
+            int db = 0;
+            int ossz = 0;
+            foreach (var a in info)
+            {
+                db++;
+                ossz += a.ar;
+            }
+
+            int atlag = ossz / db;
+
+            return atlag;
+
+        }
+
+        static void legolcsobb(List<Autok> info)
+        {
+            int olcso= 0;
+            List<int> lista = new List<int>();
+            foreach (var a in info)
+            {
+                lista.Add(a.ar);
+            }
+
+            foreach (int i in lista)
+            {
+                olcso = lista.Min();
+            }
+
+            foreach(var a in info)
+            {
+                if (a.ar == olcso)
+                {
+                    Console.WriteLine("A legolcsóbb autó adatai: {0} {1} {2} {3}",a.marka, a.evjarat, a.ar, a.szin);
+                }
+            }
+
+        }
+
+        static int melyik(List<Autok> info)
+        {
+            int hol = 0;
+            foreach (var a in info)
+            {
+                if(a.marka=="Audi" && a.szin == "ezüst")
+                {
+                    hol++;
+                    break;
+                }
+                hol++;
+            }
+
+            return hol;
+
+        }
+
+
+
+
+
+
+    }
+
+}
