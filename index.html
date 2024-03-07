@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!--
+Hétfőn számonkérés
+5 db objektum kell: versenyző neve, életkora, percben kifejezett távot megtett érték
+a: ki volt a nyertes?
+b: ki volt az utoló?
+c: hány perccel kellett volna gyorsabbnak lenni a 2.nak hogy gyorsabb legyen?
+d: átlagosan hány perc alatt teljesítették a távot?
+e: volt-e olyan aki nem tudta 10 perc alatt teljesíteni a távot, ki ő?
+-->
+
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+<p id="p4"></p>
+<p id="p5"></p>
+
+
+
+<script>
+const osszes=[];
+var versenyzo1 = {nev:"Ember1", kor:20, ido:5 };
+var versenyzo2 = {nev:"Ember2", kor:18, ido:4 };
+var versenyzo3 = {nev:"Ember3", kor:33, ido:7 };
+var versenyzo4 = {nev:"Ember4", kor:26, ido:11 };
+var versenyzo5 = {nev:"Ember5", kor:15, ido:3 };
+
+osszes.push(versenyzo1);
+osszes.push(versenyzo2);
+osszes.push(versenyzo3);
+osszes.push(versenyzo4);
+osszes.push(versenyzo5);
+
+const idok=[];
+for(let i =0; i<osszes.length;i++){
+    idok.push(osszes[i].ido)
+}
+
+//a
+let legjobb = Math.min(...idok);
+let nyertes = "";
+for(let i =0; i<osszes.length;i++){
+    if(osszes[i].ido == legjobb){
+        nyertes+=osszes[i].nev
+    }
+}
+
+document.getElementById("p1").innerHTML += "A győztes: "+nyertes;
+
+
+//b
+let legrosszabb = Math.max(...idok);
+let utolso = "";
+for(let i =0; i<osszes.length;i++){
+    if(osszes[i].ido == legrosszabb){
+        utolso+=osszes[i].nev
+    }
+}
+
+document.getElementById("p2").innerHTML += "Az utolsó helyezett: "+utolso;
+
+
+
+//c
+
+
+//d
+let osszido = 0;
+let ido_db=0;
+
+for(let i =0; i<osszes.length;i++){
+
+    osszido+=osszes[i].ido;
+    ido_db++;
+}
+
+document.getElementById("p4").innerHTML += "Az átlagidő: "+osszido/ido_db;
+
+
+//e
+let van = false;
+let ki = "";
+for(let i =0; i<osszes.length;i++){
+    if(osszes[i].ido>10){
+        van = true;
+        ki = osszes[i].nev;
+    }
+}
+
+if(van==true){
+document.getElementById("p5").innerHTML += ""+ki;
+}
+else{
+document.getElementById("p5").innerHTML += "Nincs olyan aki nem tudta befejezni 10 perc alatt";
+}
+
+
+</script>
+
+
+</body>
+</html>
