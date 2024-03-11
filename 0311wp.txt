@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+<button onclick="loadDoc()">G</button>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+
+<script>
+
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    let text = this.responseText;
+	const myArray = text.split("\n");
+
+    let kiir = "";
+    const osszes =[];
+    
+	for (let i = 0; i < myArray.length; i++) {
+	const sor=myArray[i].split(" ");
+    let ajto = new Ajtok(parseInt(sor[0]),parseInt(sor[1]),parseInt(sor[2]), sor[3]);
+    osszes.push(ajto);
+  }
+
+  for(let i =0; i<osszes.length;i++){
+    kiir+=osszes[i].azonosito+"<br>";
+  }
+
+  let elsobe = [];
+  let utolsoki = "";
+  for(let i =0; i<osszes.length;i++){
+  if(osszes[i].athaladas=="be"){
+    elsobe=osszes[i].azonosito;
+    break;
+}
+
+}
+
+  document.getElementById("p1").innerHTML += "Első befelé: "+elsobe+" Utolsó kifelé: "+utolsoki;
+
+
+
+}
+
+  xhttp.open("GET", "ajto.txt");
+  xhttp.send();
+}
+
+
+class Ajtok{
+
+    constructor(ora, perc, id, irany){
+
+        this.ido_ora = ora;
+        this.ido_perc = perc;
+        this.azonosito = id;
+        this.athaladas = irany;
+
+    }
+
+}
+
+
+
+</script>
+
+
+</body>
+</html>
