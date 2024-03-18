@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _1124
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void nev1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void kor_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void bevitel_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, int> szotar = new Dictionary<string, int>();
+            string nev = nev1.Text;
+            int eletkor = int.Parse(kor.Text);
+            szotar.Add(nev, eletkor);
+
+            foreach (KeyValuePair<string, int> i in szotar)
+            {
+                info.Items.Add(i.Key + " " + i.Value);
+
+                if (i.Key[0] == 'a' || i.Key[0] == 'A')
+                {
+                    szures.Items.Add(i.Key);
+                }
+                if (i.Value >= 18)
+                {
+                    felnott.Items.Add(i.Key);
+                }
+
+            }
+
+            nev1.Clear();
+            kor.Clear();
+
+        }
+    }
+}
+
+
+
+
+=============================================================================
+
