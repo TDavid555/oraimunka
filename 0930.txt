@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _0930_egyetem
+{
+    public class Egyetem
+    {
+        public string Nev { get; set; }
+        public string Varos { get; set; }
+
+        public Egyetem(string neve, string varosa)
+        {
+            this.Nev = neve;
+            this.Varos = varosa;
+        }
+    }
+
+    public class Vegzettseg
+    {
+        public Egyetem A { get; set; }
+        public string Szak { get; set; }
+
+        public Vegzettseg(string szaki, Egyetem a)
+        {
+            this.Szak = szaki;
+            this.A = a;
+        }
+    }
+    public class Oktato
+    {
+        public Vegzettseg V { get; set; }
+        public string Oktato_neve { get; set; }
+
+        public Oktato(string oktato, Vegzettseg v)
+        {
+            this.Oktato_neve = oktato;
+            this.V = v;
+        }
+    }
+
+    public class Kurzus
+    {
+        public Oktato O { get; set; }
+        public string Kurzus_nev { get; set; }
+
+        public Kurzus(string kurzus, Oktato o)
+        {
+            this.Kurzus_nev = kurzus;
+            this.O = o;
+        }
+    }
+
+    public class Program
+    {
+        public static int Hanyan(string varos, List<Kurzus> a)
+        {
+            int db = 0;
+
+            foreach (var item in a)
+            {
+                if (varos == item.O.V.A.Varos)
+                {
+                    db++;
+                }
+            }
+            return db;
+        }
+
+        public static List<Kurzus> kurzusok = new List<Kurzus>(100);
+        static void Main(string[] args)
+        {
+            Egyetem debrecen = new Egyetem("Debreceni Egyetem","Debrecen");
+            //Console.WriteLine(debrecen.Nev);
+            Vegzettseg info_kar = new Vegzettseg("Informatika Kar",debrecen);
+            //Console.WriteLine(info_kar.A.Varos);
+            Oktato id_1 = new Oktato("Nagy Antal",info_kar);
+            //Console.WriteLine(id_1.V.A.Varos);
+            Kurzus programozas1 = new Kurzus("Programozás I.", id_1);
+            Kurzus programozas2 = new Kurzus("Programozás II.", id_1);
+            Kurzus programozas3 = new Kurzus("Programozás III.", id_1);
+
+
+            kurzusok.Add(programozas1);
+            kurzusok.Add (programozas2);
+            kurzusok.Add (programozas3);
+
+            foreach (var item in kurzusok)
+            {
+                Console.WriteLine(item.Kurzus_nev);
+            }
+
+            Console.WriteLine("{0} debreceni kurzus van",Hanyan("Debrecen",kurzusok));
+
+
+            Console.ReadKey();
+        }
+    }
+}
