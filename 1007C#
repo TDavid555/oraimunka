@@ -1,0 +1,122 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace _1007
+{
+    public class Ember
+    {
+        public string Nev;
+        public int Kor;
+        public string Hobbi;
+
+        public Ember(List<string> emberek)
+        {
+            Nev = emberek[0];
+            Kor = int.Parse(emberek[1]);
+            Hobbi = emberek[2];
+        }
+    }
+    internal class Program
+    {
+        public static List<Ember> emberek = new List<Ember>();
+        static void Main(string[] args)
+        {
+            List<string> read = File.ReadAllLines("1007txt.txt").ToList();
+            
+            foreach (string line in read) { 
+            
+                List<string> sor = line.Split(';').ToList();
+                Ember ember = new Ember(sor);
+                emberek.Add(ember);
+            }
+
+            Console.WriteLine(Fuggveny1());
+            Console.WriteLine(Fuggveny2());
+            Console.WriteLine(Fuggveny3());
+            Console.WriteLine(Fuggveny4());
+            Console.WriteLine(Fuggveny5());
+
+            Console.ReadKey();
+        }
+
+        //az életkorok átlaga
+        static int Fuggveny1()
+        {
+            int ossz=emberek.Count;
+            int osszeg = 0;
+            foreach(var e in emberek)
+            {
+                osszeg += e.Kor;
+            }
+
+            return osszeg/ossz;
+        }
+
+        //a nevek kezdőbetűjének tárolása string típusú változóban
+        static string Fuggveny2()
+        {
+            string betuk = "";
+            foreach (var e in emberek)
+            {
+                betuk += e.Nev[0];
+            }
+            return betuk;
+        }
+
+        //a hobbik kiírása visszafelé
+
+        static string Fuggveny3()
+        {
+            string hobbik = "";
+            for (int i = emberek.Count-1; i >= 0; i--)
+            {
+                hobbik += emberek[i].Hobbi + " ";
+            }
+            return hobbik;
+        }
+
+        //páros számú életkorok
+        static string Fuggveny4()
+        {
+            string parosak = "";
+            foreach (var e in emberek)
+            {
+                if (e.Kor % 2 == 0)
+                {
+                    parosak += e.Kor+" ";
+                }
+            }
+
+            return parosak;
+        }
+
+        //van-e 30 éves?
+
+        static string Fuggveny5()
+        {
+            bool vane = false;
+            foreach (var e in emberek)
+            {
+                if (e.Kor == 30)
+                {
+                    vane = true;
+                }
+            }
+
+            if (vane)
+            {
+                return "Van 30 éves.";
+            }
+            else
+            {
+                return "Nincs 30 éves.";
+            }
+
+        }
+
+    }
+}
