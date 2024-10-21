@@ -1,13 +1,8 @@
 <?php
-
-function Osszeg($a,$b):int{
-    return $a+$b;
+function Osszeg($szam1, $szam2){
+    $ossz=$szam1+$szam2;
+    return $ossz;
 }
-
-function Kulonbseg($a,$b):int{
-    return $a-$b;
-}
-
 
 
 ?>
