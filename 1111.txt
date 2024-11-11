@@ -1,0 +1,71 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tantargyak";
+
+try {
+    $conn = mysqli_connect($servername, $username, $password,$dbname);
+
+    $tabla = "CREATE TABLE if not exists tantargyak (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        nev VARCHAR(30),
+        oktato VARCHAR(30),
+        kredit int(50)
+        )";
+
+    $elokesz1 =mysqli_prepare($conn,$tabla);
+    mysqli_stmt_execute($elokesz1);
+
+    mysqli_set_charset($conn,'UTF8');
+
+    $targyak = "INSERT INTO tantargyak(nev,oktato,kredit)
+    VALUES ('Webprogramozás', 'BB',1),
+    ('IKT projektmunka','LS',2),
+    ('Asztali A.F.','LS',3),
+    ('Matematika','VZ',4),
+    ('Irodalom','TKR',5),
+    ('Nyelvtan','TKR',6),
+    ('Történelem','TKR',7),
+    ('Fizika','VZ',8),
+    ('Testnevelés','HL',9),
+    ('Angol','NP',10);";
+
+    //$elokesz2 =mysqli_prepare($conn,$targyak);
+    //mysqli_stmt_execute($elokesz2);
+
+    $elso = mysqli_query($conn, "SELECT Count(id) FROM tantargyak");
+    $eredmeny = mysqli_fetch_all($elso);
+    echo $eredmeny[0][0];
+
+    $masodik = "SELECT nev, FROM tantargyak WHERE kredit=2";
+    $eredmeny2 = $conn->query($masodik);
+    echo $eredmeny2[0][0];
+
+    $harmadik = "SELECT SUM(kredit), FROM tantargyak";
+    $eredmeny = $conn->query($harmadik);
+    echo $eredmeny3;
+    
+    $negyedik = "SELECT nev, FROM tantargyak WHERE nev INCLUDE 'a'";
+    $eredmeny4 = $conn->query($negyedik);
+    echo $eredmeny4;
+
+    $otodik = "SELECT nev, FROM tantargyak DISTINCT";
+    $eredmeny5 = $conn->query($otodik);
+    echo $eredmeny5;
+
+    $hatodik = "SELECT AVG(kredit), FROM tantargyak";
+    $eredmeny6 = $conn->query($hatodik);
+    echo $eredmeny6;
+
+    $hetedik = "SELECT nev, FROM tantargyak WHERE kredit=(SELECT MAX(kredit) FROM tantargyak;)";
+    $eredmeny7 = $conn->query($hetedik);
+    echo $eredmeny7;
+
+
+} catch(Exception $e) {
+  echo "Hiba". $e->getMessage();
+}
+
+
+?>
