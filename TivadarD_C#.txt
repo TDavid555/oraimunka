@@ -1,0 +1,145 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TivadarD_C_
+{
+    //1.
+    public interface IWeather
+    {
+        int GetTemperature();
+        int GetHumidity();
+        int GetWindSpeed();
+        string GetWeatherCondition();
+    }
+
+    //2.
+    public class CityWeather : IWeather
+    {
+        public int GetTemperature()
+        {
+            return GetTemperature();
+        }
+        public int GetHumidity()
+        {
+            return GetHumidity();
+        }
+
+        public int GetWindSpeed()
+        {
+            return GetWindSpeed();
+        }
+
+        public string GetWeatherCondition()
+        {
+            return GetWeatherCondition();
+        }
+    }
+
+    public class ForecastWeather : IWeather
+    {
+
+        public int GetTemperature()
+        {
+            return GetTemperature();
+        }
+        public int GetHumidity()
+        {
+            return GetHumidity();
+        }
+        
+        public int GetWindSpeed()
+        {
+            return GetWindSpeed();
+        }
+
+        public string GetWeatherCondition()
+        {
+            return GetWeatherCondition();
+        }
+    }
+
+    //3.
+    public abstract class WeatherService
+    {
+        public abstract void GetTemperature();
+        public abstract void GetHumidity();
+        public abstract void GetWindSpeed();
+        public abstract void GetWeatherCondition();
+    }
+
+
+    public class Lekerdezesek
+    {
+        private List<CityWeather> weathers = new List<CityWeather>();
+
+        public void Add(CityWeather cityWeather)
+        {
+            weathers.Add(cityWeather);
+        }
+
+        public List<CityWeather> GetTemp(int temp)
+        {
+            return weathers.Where(w=>w.GetTemperature()==temp).ToList();
+        }
+        public List<CityWeather> GetHum(int hum)
+        {
+            return weathers.Where(w => w.GetHumidity() == hum).ToList();
+        }
+        public List<CityWeather> GetWindS(int wspeed)
+        {
+            return weathers.Where(w => w.GetWindSpeed() == wspeed).ToList();
+        }
+        public List<CityWeather> GetCond(string cond)
+        {
+            return weathers.Where(w => w.GetWeatherCondition() == cond).ToList();
+        }
+    }
+
+
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //4.
+            List<CityWeather> cityWeathers = new List<CityWeather>();
+            CityWeather cityWeather = new CityWeather();
+            cityWeathers.Add(cityWeather);
+
+            List<ForecastWeather> forecastWeathers = new List<ForecastWeather>();
+            ForecastWeather forecastWeather = new ForecastWeather();
+            forecastWeathers.Add(forecastWeather);
+
+            Console.WriteLine("városi / előrejelzési");
+            string valasz = Console.ReadLine();
+
+            if (valasz == "városi")
+            {
+                foreach (var c in cityWeathers)
+                {
+                    Console.WriteLine(c);
+                }
+            }
+            else if(valasz == "előrejelzési")
+            {
+                foreach (var f in forecastWeathers)
+                {
+                    Console.WriteLine(f);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Nincs ilyen lehetőség");
+            }
+
+            
+
+            Console.ReadKey();
+
+        }
+    }
+}
