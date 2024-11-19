@@ -1,0 +1,133 @@
+készíts egy olyan függvényt amely a parameterkent megkapott string vizsgálja meg
+melyik karakterből van a legtöbb és melyikből a legkevesebb
+és a felhasználó által string-ben mindkettő benne van-e (logikai)
+vizsgálat istrue/isfalse
+
+felhaszn által feltülteni egy listát (5 int elem)
+hány darab négyzetszám van benne?
+ez az érték nagyobb-e mint 2 (Greater)
+
+
+class:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1119_szt
+{
+    public class Class1
+    {
+        public KeyValuePair<char, int> TobbKevesebb(string szo)
+        {
+            List<char> lista = szo.ToCharArray().ToList();
+            Dictionary<char, int> szotar = new Dictionary<char, int>();
+
+            foreach(char l in lista)
+            {
+                szotar.Add(l, 1);
+            }
+            foreach(char l in lista)
+            {
+                foreach(var s in szotar)
+                {
+                    if(s.Key == l)
+                    {
+                        szotar[l]++;
+                    }
+                }
+            }
+
+            int kevesebb = szotar.Values.Min();
+            int tobb  = szotar.Values.Max();
+            char kchar = ' ';
+            char tchar = ' ';
+
+            foreach(char l in lista)
+            {
+                if (szotar[l] == kevesebb)
+                {
+                    kchar = l;
+                    break;
+                }
+
+                if (szotar[l] == tobb)
+                {
+                    tchar = l;
+                    break;
+                }
+            }
+
+            return new KeyValuePair<char, int>(kchar, tchar);
+
+
+        }
+
+        
+   
+
+        public int Negyzetszam()
+        {
+            List<int> lista = new List<int>() {1,2,3,4,5 };
+
+            /*
+            for(int i = 0;i <= 5; i++)
+            {
+                Console.WriteLine("Kérem a számokat");
+                int szam = int.Parse(Console.ReadLine());
+                lista.Add(szam);
+            }
+            */
+
+            int db = 0;
+            foreach (int i in lista)
+            {
+                int negyzet = i * i;
+                if(i == negyzet/i)
+                {
+                    db++;
+                }
+            }
+            return db;
+
+        }
+
+
+    }
+}
+
+
+=========================================================
+
+Teszt:
+
+using NUnit.Framework;
+using _1119_szt;
+
+namespace _1119_sztTeszt
+{
+    [TestFixture]
+    public class Tests
+    {
+        Class1 feladatok;
+        [SetUp]
+        public void Setup()
+        {
+            feladatok = new Class1();
+        }
+
+        [Test]
+        public void TobbKevesebbTeszt()
+        {
+            
+        }
+
+        [Test]
+        public void NegyzetszamTeszt()
+        {
+            int result = feladatok.Negyzetszam();
+            Assert.Greater(result, 2);
+        }
+    }
+}
