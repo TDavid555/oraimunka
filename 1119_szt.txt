@@ -10,6 +10,7 @@ ez az érték nagyobb-e mint 2 (Greater)
 +++
 függvény: paraméterként kap listát(int) olyan vizsgálatot tesz amely
 a középértéket(medián) fogja megvizsgálni hogy nagyobb-e vagy kisebb mint 50.
+Teszt: pl igaz-e vagy hamis hogy 50, vagy találd ki mit tesztelsz.
 
 
 class:
