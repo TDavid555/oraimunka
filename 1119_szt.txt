@@ -7,6 +7,10 @@ felhaszn által feltülteni egy listát (5 int elem)
 hány darab négyzetszám van benne?
 ez az érték nagyobb-e mint 2 (Greater)
 
++++
+függvény: paraméterként kap listát(int) olyan vizsgálatot tesz amely
+a középértéket(medián) fogja megvizsgálni hogy nagyobb-e vagy kisebb mint 50.
+
 
 class:
 using System;
