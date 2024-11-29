@@ -1,0 +1,15 @@
+ using (var conn = new MySqlConnection(connadat))
+ {
+     conn.Open();
+     string parancs = "INSERT INTO Employees (Name, Position,Salary) VALUES(@name,@position,@salary);";
+     using (var command = new MySqlCommand(parancs, conn))
+     {
+         command.Parameters.AddWithValue("@name", Name.Text);
+         command.Parameters.AddWithValue("@position", Position.Text);
+         command.Parameters.AddWithValue("@salary", double.Parse(Salary.Text));
+         command.ExecuteNonQuery();
+     }
+ }
+
+
+        private const string connadat = "Server=localhost;Database=;Uid=root;Pwd=;";

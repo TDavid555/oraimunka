@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
+namespace _1129_2
+{
+    public partial class Form1 : Form
+    {
+        private const string connadat = "Server=localhost;Database=cruddemo;Uid=root;Pwd=;";
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+            using (var conn = new MySqlConnection(connadat))
+            {
+                conn.Open();
+                string parancs = "INSERT INTO employees (Nev, Position,Salary) VALUES(@nev,@position,@salary);";
+                using (var command = new MySqlCommand(parancs, conn))
+                {
+                    command.Parameters.AddWithValue("@nev", Nev.Text);
+                    command.Parameters.AddWithValue("@position", Position.Text);
+                    command.Parameters.AddWithValue("@salary", double.Parse(Salary.Text));
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("MŰKÖDIK!");
+                }
+            }
+
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            using (var conn = new MySqlConnection(connadat))
+            {
+                conn.Open();
+                string parancs = "DELETE FROM employees WHERE ID=@id;";
+                using (var command = new MySqlCommand(parancs, conn))
+                {
+                    command.Parameters.AddWithValue("@id",ID.Text);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("MŰKÖDIK!");
+
+                }
+            }
+        }
+    }
+}
