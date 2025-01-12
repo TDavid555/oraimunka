@@ -1,0 +1,205 @@
+<script>
+        /*
+        Feladat 3: Tömbök kombinálása és szűrése
+            Két különböző tömbben kaptál adatokat egy esemény regisztrált és 
+            megjelent résztvevőiről. A feladat az, hogy készíts egy új tömböt, 
+            amely csak a megjelent résztvevők neveit tartalmazza.
+        */
+
+        const registered = ["Anna", "Ben", "Clara", "David"];
+        const attended = ["Clara", "David", "Ella"];
+
+        function findAttendees(registered, attended) {
+            return registered.filter(megjelent => attended.includes(megjelent))
+        }
+
+        console.log(findAttendees(registered, attended));
+    </script>
+
+    <script>
+        /*
+        Feladat 4: Összetett lekérdezés
+            Adott egy tömb, amely egy könyvtár könyveit tartalmazza. A feladat, 
+            hogy egy új tömböt hozz létre, amely csak az 500 oldalnál vastagabb, 
+            és elérhető könyveket tartalmazza, a címükkel és szerzőjükkel.
+        */
+
+        const books = [
+            { title: "Book A", author: "Author 1", pages: 320, available: true },
+            { title: "Book B", author: "Author 2", pages: 550, available: false },
+            { title: "Book C", author: "Author 3", pages: 610, available: true },
+            { title: "Book D", author: "Author 4", pages: 720, available: true }
+        ];
+
+        function filterBooks(books) {
+            return books.filter(book => book.pages > 500 && book.available).map(book => ({cim: book.title, szerzo: book.author}))  // Szűrés az oldalszám és elérhetőség alapján (filter), Csak a cím és szerző (map)
+        }
+
+        console.log(filterBooks(books));
+    </script>
+
+    <script>
+        /*
+        Feladat 5: Spread operátor használata
+            Adott egy tömb, amely egy bevásárlólistát tartalmaz. Egy új tételt 
+            szeretnél hozzáadni, anélkül hogy módosítanád az eredeti tömböt.
+        */
+
+        const shoppingList = ["Milk", "Bread", "Eggs"];
+        const newItem = "Butter";
+
+        function addItemToList(shoppingList, newItem) {
+            return [...shoppingList, newItem];  // A spread operátor itt szerepel az eredeti tömb előtt.
+        }
+
+        console.log(addItemToList(shoppingList, newItem));
+    </script>
+
+    <script>
+        /*
+        Feladat 6: Többdimenziós tömbök feldolgozása
+            Adott egy többdimenziós tömb, amely tanulók jegyeit tartalmazza 
+            tantárgyanként. A feladat, hogy számítsd ki az egyes tantárgyak átlagát.
+        */
+
+        const grades = [
+            { subject: "Math", scores: [90, 80, 70] },
+            { subject: "English", scores: [85, 75, 65] },
+            { subject: "Science", scores: [88, 78, 68] }
+        ];
+
+        function calculateSubjectAverages(grades) {
+            // Az átlagokat egy objektumot tartalmazó tömbben tároljuk
+            let averages = [];
+
+            grades.forEach(grade => {
+                const totalScore = grade.scores.reduce((sum,score) => sum+score,0);
+                const average = totalScore / grade.scores.length;
+    
+            // Minden tantárgyhoz tartozó objektumot hozzáadunk a tömbhöz
+            averages.push({ subject: grade.subject, average: average });
+            });
+
+            return averages;
+        }
+
+        console.log(calculateSubjectAverages(grades));
+    </script>
+
+    <script>
+        /*
+        Feladat 7: Dinamikus paraméterek kezelése
+            Készíts egy függvényt, amely tetszőleges számú számot fogad 
+            paraméterként, és visszaadja az összegüket.
+        */
+
+        function sumAll(...numbers) {
+            return numbers.reduce((sum, number) => sum + number, 0);
+        }
+
+        console.log(sumAll(1, 2, 3, 4, 5)); // 15
+    </script>
+
+    <script>
+        /*
+        Feladat 8: Objektumok mély másolása
+            Készíts egy függvényt, amely egy objektum mély másolatát készíti el, 
+            és hozzáad egy új mezőt az eredeti objektum érintése nélkül.
+        */
+
+        function deepCopyAndAddField(obj, key, value) {
+        // Sekély másolat készítése spread operátorral
+            const copy = { ...obj, details: { ...obj.details } };
+
+        // Új mező hozzáadása, ha a kulcs nem létezik
+            if (copy?.[key] === undefined) {
+                copy[key] = value;
+            } else {
+                console.warn(`A kulcs "${key}" már létezik az objektumban.`);
+            }
+
+            return copy;
+        }
+
+        const original = { name: "Alice", details: { age: 25, city: "Budapest" } };
+        const newObject = deepCopyAndAddField(original, "country", "Hungary");
+
+        console.log(newObject); // { name: "Alice", details: { age: 25, city: "Budapest" }, country: "Hungary" }
+        console.log(original);  // { name: "Alice", details: { age: 25, city: "Budapest" } }
+    </script>
+
+    <script>
+        /*
+        Feladat 9: Adatok rendezése és szűrése
+            Egy tömbben dolgozói adatokat kaptál. A feladat az, hogy rendezd őket 
+            fizetés szerint csökkenő sorrendbe, majd készíts egy új tömböt, amely 
+            csak a 100.000 feletti fizetésű dolgozók nevét tartalmazza.
+        */
+
+        const employees = [
+            { name: "John", salary: 95000 },
+            { name: "Alice", salary: 120000 },
+            { name: "Bob", salary: 105000 },
+            { name: "Charlie", salary: 80000 }
+        ];
+
+        function filterAndSortEmployees(employees) {
+        // Fizetés szerint csökkenő sorrendbe rendezzük a dolgozókat
+            const sortedEmployees = employees.sort((a, b) => b.salary - a.salary);
+
+        // Szűrés: csak a 100.000 feletti fizetésű dolgozók neveit vesszük
+            const filteredNames = sortedEmployees
+            .filter(employee => employee.salary > 100000)
+            .map(employee => employee.name);
+
+            return filteredNames;
+        }
+
+        console.log(filterAndSortEmployees(employees)); 
+    </script>
+
+    <script>
+        /*
+        Feladat 10: Foglalások ellenőrzése
+            Egy tömb időintervallumokat tartalmaz, amelyek foglalásokat jelentenek egy 
+            tárgyalóban. Készíts egy függvényt, amely ellenőrzi, hogy egy új foglalás 
+            ütközik-e a meglévőkkel!
+        */
+
+        function checkBookingConflict(bookings, newBooking) {
+            for (let booking of bookings) {
+            // 1. Az új foglalás kezdete átfedi a meglévő foglalás végét
+                if (newBooking.start < booking.end && newBooking.start >= booking.start) {
+                    return true;
+                }
+
+            // 2. Az új foglalás vége átfedi a meglévő foglalás kezdetét
+                if (newBooking.end > booking.start && newBooking.end <= booking.end) {
+                    return true;
+                }
+
+            // 3. Az új foglalás teljesen belül van a meglévő foglalásban
+                if (newBooking.start >= booking.start && newBooking.end <= booking.end) {
+                    return true;
+                }
+
+            // 4. Az új foglalás teljesen lefedi a meglévő foglalást
+                if (newBooking.start <= booking.start && newBooking.end >= booking.end) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        const bookings = [
+            { start: 9, end: 11 },
+            { start: 13, end: 14 },
+            { start: 15, end: 17 }
+        ];
+
+        const newBooking = { start: 10, end: 11 };
+        console.log(checkBookingConflict(bookings, newBooking)); // true
+    </script>
+
+</body>
+</html>
