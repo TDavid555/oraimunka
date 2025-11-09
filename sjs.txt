@@ -1,0 +1,64 @@
+npm init -y
+npm install express mysql2 cors body-parser
+
+const express = require('express');
+const mysql = require('mysql2');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+const db = mysql.createConnection({
+ host: 'localhost',
+ user: 'root',
+ password: '',
+ database: 'moon_mission'
+});
+
+db.connect(err => {
+ if (err) throw err;
+ console.log('MySQL kapcsolódva.');
+});
+
+
+app.get('/api/astronauts', (req, res) => {
+ db.query('SELECT * FROM astronauts', (err, results) => {
+ if (err) throw err;
+ res.json(results);
+ });
+});
+
+app.post('/api/astronauts', (req, res) => {
+ const { name, mission_role, email } = req.body;
+ db.query('INSERT INTO astronauts (name, mission_role, email) VALUES (?, ?, ?)', [name, mission_role, email], (err,
+results) => {
+ if (err) throw err;
+ res.json({ id: results.insertId, name, mission_role, email });
+ });
+});
+
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+
+
+
+
+
+//httpclient
+//observable
+
+export class ApiService {
+ private apiUrl = 'http://localhost:3000/api/book';
+ constructor(private http: HttpClient) {}
+ getBooks)Ö: Observable<any> {
+  return this.http.get<any>(this.apiUrl);
+ }
+
+}
+
