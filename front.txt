@@ -1,0 +1,43 @@
+/*
+ games: any[] = [];
+ newGame = { title: '', genre: '', publisher: '', release_year: '', rating: '' };
+ editMode = false;
+ editId: number | null = null;
+
+ constructor(private Games: Games) {}
+
+ ngOnInit(): void {
+ this.loadGames();
+ }
+
+ loadGames() {
+ this.Games.getGames().subscribe(data => this.games = data);
+ }
+
+ addGame() {
+ this.Games.addGame(this.newGame).subscribe(() => {
+ this.loadGames();
+ this.newGame = { title: '', genre: '', publisher: '', release_year: '', rating: '' };
+ });
+ }
+
+ deleteGame(id: number) {
+ this.Games.deleteGame(id).subscribe(() => this.loadGames());
+ }
+
+ startEdit(game: any) {
+ this.editMode = true;
+ this.editId = game.id;
+ this.newGame = { ...game };
+ }
+ 
+ updateGame() {
+ this.Games.updateGame(this.editId!, this.newGame).subscribe(() => {
+ this.loadGames();
+ this.editMode = false;
+ this.editId = null;
+ this.newGame = { title: '', genre: '', publisher: '', release_year: '', rating: '' };
+ });
+ }
+
+*/
